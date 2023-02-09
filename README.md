@@ -1,6 +1,6 @@
 # Librería de Matrices
 
-La librería soporta los siguientes operaciones entre números complejos:
+La librería soporta los siguientes operaciones:
 
 Lista de operaciones:
 
