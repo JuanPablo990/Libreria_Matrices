@@ -18,6 +18,7 @@ Lista de operaciones:
 - Producto interno de dos vectores
 - Norma de un vector
 - Distancia entre dos vectores
+- Valores  y vectores propios de una matriz
 - Revisar si una matriz es unitaria
 - Revisar si una matriz es Hermitiana
 - Producto tensor de dos matrices/vectores
@@ -39,9 +40,10 @@ Lista de operaciones:
     productoInterno_Vector(a, b):
     normaVector(a):
     distanciaVector(a, b):
+    Valores_propios(v1)   
     matrizUnitaria(a):
     matrizHermitiana(a):
     productoTensorial_Matriz_Vector(a, b):
-    Valores  y vectores propios de una matriz
+
 ### Juan Pablo Nieto Cortes CNYT-1
 #### lenguaje python
