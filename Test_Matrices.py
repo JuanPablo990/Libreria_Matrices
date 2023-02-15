@@ -1,7 +1,7 @@
 import libmatrices as lab2
 import math
 import unittest
-
+import numpy as np
 
 class TestLab2CNYT(unittest.TestCase):
 
@@ -142,6 +142,27 @@ class TestLab2CNYT(unittest.TestCase):
               [[-2, 1], [1, -1], [2, 1], [-1, -2], [1, 1], [-1, 2]]]
 
         self.assertEqual(lab2.productoTensorial_Matriz_Vector(v1, v2), v3)
+
+    def test_Valores_propios(self):
+        v1 = [[-1, 1, 0],[-4, 3, 0],[1, 0, 2]]
+        a = lab2.Valores_propios(v1)
+        self.assertEqual(a[0], 2)
+        self.assertEqual(a[1], 1)
+        self.assertEqual(a[2], 1)
+
+    def test_Vectores_propios(self):
+        v1 = [[-1, 1, 0],[-4, 3, 0],[1, 0, 2]]
+        a = lab2.vectores_propios(v1)
+        self.assertEqual(a[0][0], 0)
+        self.assertEqual(a[0][1], 0.4082482904638631)
+        self.assertEqual(a[0][2], 0.4082482904638631)
+        self.assertEqual(a[1][0], 0)
+        self.assertEqual(a[1][1], 0.8164965809277259)
+        self.assertEqual(a[1][2], 0.8164965809277259)
+        self.assertEqual(a[2][0], 1)
+        self.assertEqual(a[2][1], -0.4082482904638631)
+        self.assertEqual(a[2][2], -0.4082482904638631)
+
 
 
 if __name__ == "__main__":

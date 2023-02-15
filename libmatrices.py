@@ -2,8 +2,9 @@
 import libcplx as lab1
 from tkinter import messagebox
 import math
+import numpy as np
 
-#Adición de vectores complejos.
+#1. Adición de vectores complejos.
 def suma_Vector(a, b):
     if len(a) != len(b):
         messagebox.showerror("ERROR!", "Los vectores no pueden ser operados, no son de igual dimension")
@@ -14,7 +15,7 @@ def suma_Vector(a, b):
             rtaVector[i][0] = lab1.suma(a[i][0], b[i][0])
         return rtaVector
 
-# Resta de vectores complejos.
+#1.2. Resta de vectores complejos.
 def resta_Vector(a, b):
     if len(a) != len(b):
         messagebox.showerror("ERROR!", "Los vectores no pueden ser operados, no son de igual dimension")
@@ -25,7 +26,7 @@ def resta_Vector(a, b):
             rtaVector[i][0] = lab1.resta(a[i][0], b[i][0])
         return rtaVector
 
-#Inverso (aditivo) de un vector complejos.
+#2. Inverso (aditivo) de un vector complejos.
 def inversoAditivo_Vector(a):
     rtaVector = [[None for fila in range(1)] for column in range(len(a))]
     fila = len(a)
@@ -33,7 +34,7 @@ def inversoAditivo_Vector(a):
         rtaVector[i][0] = lab1.producto(a[i][0], [-1, 0])
     return rtaVector
 
-# Multiplicación de un escalar por un vector complejo.
+#3. Multiplicación de un escalar por un vector complejo.
 def productoEscalar_Vector(a, b):
     fila = len(a)
     rta = [[None for column in range(len(a[0]))] for row in range(len(a))]
@@ -41,7 +42,7 @@ def productoEscalar_Vector(a, b):
         rta[i][0] = lab1.producto(a[i][0], b)
     return rta
 
-#  Adición de matrices complejas.
+#4. Adición de matrices complejas.
 def suma_Matriz(a, b):
     fila = len(a)
     columna = len(a[0])
@@ -55,7 +56,7 @@ def suma_Matriz(a, b):
                 rtaMatriz[i][j] = lab1.suma(a[i][j], b[i][j])
         return rtaMatriz
 
-# Inversa (aditiva) de una matriz compleja.
+#5. Inversa (aditiva) de una matriz compleja.
 def inversoAditivo_Matriz(a):
     fila = len(a)
     columna = len(a[0])
@@ -64,7 +65,7 @@ def inversoAditivo_Matriz(a):
             a[i][j] = lab1.producto(a[i][j], [-1, 0])
     return a
 
-# Multiplicación de un escalar por una matriz compleja.
+#6. Multiplicación de un escalar por una matriz compleja.
 def productoEscalar_Matriz(a, b):
     fila = len(a)
     columna = len(a[0])
@@ -74,7 +75,7 @@ def productoEscalar_Matriz(a, b):
             rta[i][j] = lab1.producto(a[i][j], b)
     return rta
 
-#Transpuesta de una matriz/vector
+#7. Transpuesta de una matriz/vector
 def transpuesta_Matriz_Vector(a):
     fila = len(a)
     columna = len(a[0])
@@ -84,7 +85,7 @@ def transpuesta_Matriz_Vector(a):
             transpuesta[j][i] = a[i][j]
     return transpuesta
 
-# Conjugada de una matriz/vector
+#8. Conjugada de una matriz/vector
 def conjugado_Matriz_Vector(a):
     fila = len(a)
     columna = len(a[0])
@@ -98,14 +99,14 @@ def conjugado_Matriz_Vector(a):
             rta[i][0] = lab1.conjugado(a[i][0])
     return rta
 
-# Adjunta (daga) de una matriz/vector
+#9. Adjunta (daga) de una matriz/vector
 def adjunta_Matriz_Vector(a):
     conj = a[:]
     newConj = conjugado_Matriz_Vector(conj)
     trans = transpuesta_Matriz_Vector(newConj)
     return trans
 
-# Producto de dos matrices (de tamaños compatibles)
+#10. Producto de dos matrices (de tamaños compatibles)
 def producto_Matriz(a, b):
     filaA = len(a)
     filaB = len(b)
@@ -122,16 +123,16 @@ def producto_Matriz(a, b):
                     rta[i][j] = lab1.suma(rta[i][j], lab1.producto(a[i][k], b[k][j]))
         return rta
 
-# Función para calcular la "acción" de una matriz sobre un vector.
+#11. Función para calcular la "acción" de una matriz sobre un vector.
 def accion_MatrizSobreVector(a, b):
     return producto_Matriz(a, b)
 
-# Producto interno de dos vectores
+#12. Producto interno de dos vectores
 def productoInterno_Vector(a, b):
     newVector = adjunta_Matriz_Vector(a)
     return producto_Matriz(newVector, b)
 
-# Norma de un vector
+#13. Norma de un vector
 def normaVector(a):
     fila = len(a)
     columna = len(a[0])
@@ -141,13 +142,24 @@ def normaVector(a):
             rta += a[i][j][0] ** 2 + a[i][j][1] ** 2
     return math.sqrt(rta)
 
-# Distancia entre dos vectores
+#14. Distancia entre dos vectores
 def distanciaVector(a, b):
     resta = resta_Vector(a, b)
     norma = normaVector(resta)
     return norma
+#15.Valores  y vectores propios de una matriz
+#valores propios de una matriz
+def Valores_propios(v1):
+    mat = np.array(v1)
+    eigenvalue, featurevector = np.linalg.eig(mat)
+    return eigenvalue
+#vectores propios de una matriz
+def vectores_propios(v1):
+    mat = np.array(v1)
+    eigenvalue, featurevector = np.linalg.eig(mat)
+    return featurevector
 
-# Revisar si una matriz es unitaria
+#16. Revisar si una matriz es unitaria
 def matrizUnitaria(a):
     daga = adjunta_Matriz_Vector(a)
     operacion = producto_Matriz(a, daga)
@@ -162,7 +174,7 @@ def matrizUnitaria(a):
     else:
         return False
 
-# Revisar si una matriz es Hermitiana
+#17. Revisar si una matriz es Hermitiana
 def matrizHermitiana(a):
     daga = adjuntaMatrizVector(a)
     if daga == a:
@@ -170,7 +182,7 @@ def matrizHermitiana(a):
     else:
         return False
 
-# Producto tensor de dos matrices/vectores
+#18. Producto tensor de dos matrices/vectores
 def productoTensorial_Matriz_Vector(a, b):
     filaM1, filaM2 = len(a), len(b)
     columnaM1, columnaM2 = len(a[0]), len(b[0])
