@@ -42,6 +42,6 @@ Lista de operaciones:
     matrizUnitaria(a):
     matrizHermitiana(a):
     productoTensorial_Matriz_Vector(a, b):
-
+    Valores  y vectores propios de una matriz
 ### Juan Pablo Nieto Cortes CNYT-1
 #### lenguaje python
